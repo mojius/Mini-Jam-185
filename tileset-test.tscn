@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=4 uid="uid://bs8drlvl6d80w"]
+[gd_scene load_steps=4 format=4 uid="uid://duokjj614kuis"]
 
-[ext_resource type="TileSet" uid="uid://bir40ehqpp06l" path="res://placeholder-tiles-tileset.tres" id="1_pdics"]
+[ext_resource type="TileSet" uid="uid://b8rml3bcjstnk" path="res://placeholder-tiles-tileset.tres" id="1_pdics"]
+[ext_resource type="PackedScene" uid="uid://mc0li434e1qw" path="res://scenes/alien_cat.tscn" id="2_1nja4"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1nja4"]
+b = Vector2(381, -1)
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,3 +13,34 @@ texture_filter = 1
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAABAAAAAAAGAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAABAAAAAAADAAIAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAABAAAAAAAGAAIAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAMAAAABAAAAAAAGAAQAAAABAAAAAAAFAAQAAAABAAAAAAAEAAQAAAAAAAAAAAADAAQAAAABAAAAAAACAAQAAAAAAAEAAAABAAEAAAABAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAAAAAQAAAABAAAAAAAAAAMAAAABAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAUAAAAAAAAAAAACAAUAAAABAAAAAAAAAAUAAAAAAAEAAAAAAAYAAAAAAAEAAAABAAYAAAAAAAAAAAACAAYAAAABAAAAAAADAAYAAAAAAAEAAAADAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAFAAYAAAAAAAAAAAAGAAYAAAAAAAAAAAAGAAUAAAABAAAAAAAFAAUAAAABAAAAAAAEAAUAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAGAAcAAAABAAAAAAAFAAcAAAABAAAAAAAEAAcAAAAAAAAAAAADAAcAAAAAAAAAAAACAAcAAAAAAAAAAAABAAcAAAAAAAAAAAAAAAcAAAABAAAAAAA=")
 tile_set = ExtResource("1_pdics")
+
+[node name="AlienCat" parent="." instance=ExtResource("2_1nja4")]
+position = Vector2(130, 162)
+
+[node name="Invisible Boundaries" type="Node" parent="."]
+
+[node name="left" type="StaticBody2D" parent="Invisible Boundaries"]
+position = Vector2(-1, 1)
+rotation = 1.57989
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Boundaries/left"]
+shape = SubResource("SegmentShape2D_1nja4")
+
+[node name="right" type="StaticBody2D" parent="Invisible Boundaries"]
+position = Vector2(386, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Boundaries/right"]
+rotation = 1.5708
+shape = SubResource("SegmentShape2D_1nja4")
+
+[node name="up" type="StaticBody2D" parent="Invisible Boundaries"]
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Boundaries/up"]
+shape = SubResource("SegmentShape2D_1nja4")
+
+[node name="down" type="StaticBody2D" parent="Invisible Boundaries"]
+position = Vector2(4, 386)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Boundaries/down"]
+shape = SubResource("SegmentShape2D_1nja4")
