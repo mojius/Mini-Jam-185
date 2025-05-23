@@ -33,14 +33,14 @@ position = Vector2(386, 2)
 rotation = 1.5708
 shape = SubResource("SegmentShape2D_1nja4")
 
-[node name="up" type="StaticBody2D" parent="Invisible Boundaries"]
-position = Vector2(0, -2)
+[node name="top" type="StaticBody2D" parent="Invisible Boundaries"]
+position = Vector2(1, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Boundaries/up"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Boundaries/top"]
 shape = SubResource("SegmentShape2D_1nja4")
 
-[node name="down" type="StaticBody2D" parent="Invisible Boundaries"]
+[node name="bottom" type="StaticBody2D" parent="Invisible Boundaries"]
 position = Vector2(4, 386)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Boundaries/down"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Boundaries/bottom"]
 shape = SubResource("SegmentShape2D_1nja4")
