@@ -8,15 +8,16 @@ func generate():
     var stack: Array[Vector2i]
     var visited: Dictionary[Vector2i, bool]
 
-    var edge: Array[int] = [0, 7]
+    var edge: Array[int] = [0, 8]
+    var random_even_array: Array[int] = [0, 2, 4, 6, 8]
 
     var random = randi_range(0,1)
     var rand_tile := Vector2i(-1,-1)
 
     if random == 0:
-        rand_tile = Vector2i(edge.pick_random(), randi_range(0,7))
+        rand_tile = Vector2i(edge.pick_random(), random_even_array.pick_random())
     else:
-        rand_tile = Vector2i(randi_range(0,7), edge.pick_random())
+        rand_tile = Vector2i(random_even_array.pick_random(), edge.pick_random())
 
     
     init_cell(rand_tile, Vector2i(0,0), visited, stack)
