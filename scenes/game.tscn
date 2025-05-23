@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://g440bxlmicj3"]
+
+[ext_resource type="PackedScene" uid="uid://mc0li434e1qw" path="res://scenes/alien_cat.tscn" id="1_uwrxv"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_uwrxv"]
+b = Vector2(127, 0)
+
+[node name="Game" type="Node2D"]
+
+[node name="AlienCat" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(0, -1)
+
+[node name="Camera2D" type="Camera2D" parent="AlienCat"]
+position = Vector2(0, 1)
+scale = Vector2(0.972481, 0.949073)
+zoom = Vector2(8, 8)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-51, 8)
+shape = SubResource("SegmentShape2D_uwrxv")
