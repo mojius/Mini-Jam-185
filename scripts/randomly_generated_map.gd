@@ -23,7 +23,6 @@ func generate():
     init_cell(rand_tile, Vector2i(0,0), visited, stack)
 
     while stack.size() > 0:
-        await get_tree().create_timer(0.03).timeout
         var cell: Vector2i = stack.pop_front()
         #print("Popped! ", cell)
         var neighbors: Array[Vector2i] = get_special_surrounding(cell)
