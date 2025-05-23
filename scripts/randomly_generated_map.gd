@@ -1,5 +1,20 @@
 class_name RandomlyGeneratedMap extends TileMapLayer
 
+@export var kitty: PackedScene
+
+var atlas_id := 5
+
+var floor_tile: Vector2i:
+    get:
+        return [Vector2i(3,0), Vector2i(4,0)].pick_random()
+
+var floor_tiles: Array[Vector2i] = [Vector2i(3,0), Vector2i(4,0)]
+
+var wall_tile := Vector2i(0,0)
+var cracked_tile : Vector2i:
+    get:
+        return [Vector2i(1,0), Vector2i(2,0)].pick_random()
+
 func _ready() -> void:
     generate()
 
@@ -20,7 +35,11 @@ func generate():
         rand_tile = Vector2i(random_even_array.pick_random(), edge.pick_random())
 
     
-    init_cell(rand_tile, Vector2i(0,0), visited, stack)
+    init_cell(rand_tile, floor_tile, visited, stack)
+    
+    var k = kitty.instantiate()
+    add_child(k)
+    k.position = map_to_local(rand_tile)
 
     while stack.size() > 0:
         var cell: Vector2i = stack.pop_front()
@@ -36,32 +55,29 @@ func generate():
         if unvisited_neighbors.size() > 0:
             stack.push_front(cell)
             var random_neighbor = unvisited_neighbors.pick_random()
-            init_cell(random_neighbor, Vector2i(0,0), visited, stack)
+            init_cell(random_neighbor, floor_tile, visited, stack)
             var difference: Vector2i = (random_neighbor - cell) / 2
             #print("Difference is: ", difference)
             var wall: Vector2i = cell + difference
-            set_cell(wall, 0, Vector2i(0,0))
+            set_cell(wall, atlas_id, floor_tile)
     
     # Generate breaks
-    var walls = get_used_cells().filter(func(cell): return get_cell_atlas_coords(cell) == Vector2i(1,0))
+    var walls = get_used_cells().filter(func(cell): return get_cell_atlas_coords(cell) == wall_tile)
     for w in walls:
         var rand = randi_range(1,10)
         if rand < 3:
-            if ((get_cell_atlas_coords(w + Vector2i.LEFT) == Vector2i(0,0) and
-                get_cell_atlas_coords(w + Vector2i.RIGHT) == Vector2i(0,0)) !=
-                (get_cell_atlas_coords(w + Vector2i.UP) == Vector2i(0,0) and
-                get_cell_atlas_coords(w + Vector2i.DOWN) == Vector2i(0,0))):
-                    set_cell(w, 0, Vector2i(0,1))
+            if ((get_cell_atlas_coords(w + Vector2i.LEFT) in  floor_tiles and
+                get_cell_atlas_coords(w + Vector2i.RIGHT) in  floor_tiles) !=
+                (get_cell_atlas_coords(w + Vector2i.UP) in  floor_tiles and
+                get_cell_atlas_coords(w + Vector2i.DOWN) in floor_tiles)):
+                    set_cell(w, atlas_id, cracked_tile)
 
             
-
-    
-
 
 func init_cell(cell: Vector2i, atlas: Vector2i, visited: Dictionary[Vector2i, bool], stack: Array[Vector2i]):
     if cell not in get_used_cells(): return
     visited[cell] = true
-    set_cell(cell, 0, atlas)
+    set_cell(cell, atlas_id, atlas)
     stack.push_front(cell)
 
 func get_special_surrounding(cell: Vector2i) -> Array[Vector2i]:
