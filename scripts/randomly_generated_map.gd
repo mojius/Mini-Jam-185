@@ -7,23 +7,27 @@ var atlas_id := 5
 @export var floor_tile_1: Vector2i
 @export var floor_tile_2: Vector2i
 
-var floor_tiles: Array[Vector2i] = [floor_tile_1, floor_tile_2]
+@onready var floor_tiles: Array[Vector2i] = [floor_tile_1, floor_tile_2]
 
 @export var wall_tile_1: Vector2i
 @export var wall_tile_2: Vector2i
 
 
-var wall_tiles: Array[Vector2i] = [wall_tile_1, wall_tile_2]
+@onready var wall_tiles: Array[Vector2i] = [wall_tile_1, wall_tile_2]
 
 @export var cracked_tile_1: Vector2i
 @export var cracked_tile_2: Vector2i
 
-var cracked_tiles: Array[Vector2i] = [cracked_tile_1, cracked_tile_2]
+@onready var cracked_tiles: Array[Vector2i] = [cracked_tile_1, cracked_tile_2]
 
 func _ready() -> void:
     generate()
 
 func generate():
+
+    for i in range(1,20):
+        set_cell(get_used_cells().pick_random(), atlas_id, wall_tile_2)
+        
 
     var stack: Array[Vector2i]
     var visited: Dictionary[Vector2i, bool]
