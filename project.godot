@@ -14,3 +14,7 @@ config/name="Mini Jam 185"
 run/main_scene="uid://cxqystpov7i5k"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=648

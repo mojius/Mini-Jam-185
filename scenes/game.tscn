@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=4 uid="uid://cxqystpov7i5k"]
 
-[ext_resource type="TileSet" uid="uid://pdiijnuixa4d" path="res://sprites/environment-tiles.tres" id="1_phowv"]
-[ext_resource type="Script" uid="uid://dcckq2nogle2d" path="res://scripts/randomly_generated_map.gd" id="2_ftafa"]
-[ext_resource type="PackedScene" uid="uid://mc0li434e1qw" path="res://scenes/alien_cat.tscn" id="3_ftafa"]
+[ext_resource type="TileSet" uid="uid://pdiijnuixa4d" path="res://sprites/environment-tiles.tres" id="1_lnu2h"]
+[ext_resource type="Script" uid="uid://dcckq2nogle2d" path="res://scripts/randomly_generated_map.gd" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://mc0li434e1qw" path="res://scenes/alien_cat.tscn" id="3_iywne"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftafa"]
 size = Vector2(16, 432)
@@ -10,40 +10,46 @@ size = Vector2(16, 432)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oakd7"]
 size = Vector2(432, 16)
 
-[node name="Node2D" type="Node2D"]
+[node name="Root" type="Node2D"]
 
 [node name="RandomlyGeneratedMap" type="TileMapLayer" parent="."]
 texture_filter = 1
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAAAAAEABQAAAAAAAAAAAAAABQAAAAAAAAACAAAABQAAAAAAAAADAAAABQAAAAAAAAAEAAAABQAAAAAAAAAFAAAABQAAAAAAAAAGAAAABQAAAAAAAAAHAAAABQAAAAAAAAAFAAEABQAAAAAAAAADAAEABQAAAAAAAAAEAAEABQAAAAAAAAAGAAIABQAAAAAAAAAHAAMABQAAAAAAAAAHAAUABQAAAAAAAAAHAAYABQAAAAAAAAAAAAcABQAAAAAAAAAFAAcABQAAAAAAAAAGAAcABQAAAAAAAAAHAAcABQAAAAAAAAAHAAQABQAAAAAAAAAEAAYABQAAAAAAAAAEAAcABQAAAAAAAAADAAcABQAAAAAAAAACAAcABQAAAAAAAAABAAYABQAAAAAAAAAAAAYABQAAAAAAAAAFAAQABQAAAAAAAAAFAAYABQAAAAAAAAADAAYABQAAAAAAAAABAAcABQAAAAAAAAAGAAYABQAAAAAAAAACAAIABQAAAAAAAAADAAIABQAAAAAAAAAHAAIABQAAAAAAAAAGAAMABQAAAAAAAAAEAAQABQAAAAAAAAADAAQABQAAAAAAAAAAAAUABQAAAAAAAAABAAEABQAAAAAAAAABAAMABQAAAAAAAAAFAAMABQAAAAAAAAAGAAQABQAAAAAAAAAGAAUABQAAAAAAAAAFAAUABQAAAAAAAAAEAAUABQAAAAAAAAADAAUABQAAAAAAAAABAAUABQAAAAAAAAACAAYABQAAAAAAAAACAAUABQAAAAAAAAACAAQABQAAAAAAAAADAAMABQAAAAAAAAAEAAMABQAAAAAAAAAFAAIABQAAAAAAAAAGAAEABQAAAAAAAAAHAAEABQAAAAAAAAAEAAIABQAAAAAAAAACAAMABQAAAAAAAAABAAQABQAAAAAAAAAAAAQABQAAAAAAAAAAAAMABQAAAAAAAAAAAAIABQAAAAAAAAABAAIABQAAAAAAAAACAAEABQAAAAAAAAABAAAABQAAAAAAAAAIAAAABQAAAAAAAAAIAAEABQAAAAAAAAAIAAIABQAAAAAAAAAIAAMABQAAAAAAAAAIAAQABQAAAAAAAAAIAAUABQAAAAAAAAAIAAYABQAAAAAAAAAIAAcABQAAAAAAAAAIAAgABQAAAAAAAAAHAAgABQAAAAAAAAAGAAgABQAAAAAAAAAFAAgABQAAAAAAAAAEAAgABQAAAAAAAAADAAgABQAAAAAAAAACAAgABQAAAAAAAAABAAgABQAAAAAAAAAAAAgABQAAAAAAAAA=")
-tile_set = ExtResource("1_phowv")
-script = ExtResource("2_ftafa")
-kitty = ExtResource("3_ftafa")
+tile_set = ExtResource("1_lnu2h")
+script = ExtResource("2_lbhrr")
+kitty = ExtResource("3_iywne")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="RandomlyGeneratedMap"]
+[node name="Walls" type="Node2D" parent="."]
+scale = Vector2(3, 3)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RandomlyGeneratedMap/StaticBody2D"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 position = Vector2(-2.66667, 72)
 scale = Vector2(0.333333, 0.333333)
 shape = SubResource("RectangleShape2D_ftafa")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="RandomlyGeneratedMap"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="RandomlyGeneratedMap/StaticBody2D2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
 position = Vector2(146.667, 72)
 scale = Vector2(0.333333, 0.333333)
 shape = SubResource("RectangleShape2D_ftafa")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="RandomlyGeneratedMap"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="RandomlyGeneratedMap/StaticBody2D3"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
 position = Vector2(72, 146.667)
 scale = Vector2(0.333333, 0.333333)
 shape = SubResource("RectangleShape2D_oakd7")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="RandomlyGeneratedMap"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="RandomlyGeneratedMap/StaticBody2D4"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
 position = Vector2(72, -2.66667)
 scale = Vector2(0.333333, 0.333333)
 shape = SubResource("RectangleShape2D_oakd7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(216, 216)

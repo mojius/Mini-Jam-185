@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bi00ouuaenwgu" path="res://scripts/cat_movement.gd" id="1_xjqgo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xjqgo"]
-size = Vector2(41.7727, 42.7727)
+size = Vector2(30.303, 30.303)
 
 [node name="AlienCat" type="Node2D"]
 
@@ -17,6 +17,6 @@ scale = Vector2(0.33, 0.33)
 texture = ExtResource("1_mdowt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0.1075, -0.0575004)
+position = Vector2(1.78814e-07, -5.96046e-08)
 scale = Vector2(0.33, 0.33)
 shape = SubResource("RectangleShape2D_xjqgo")
