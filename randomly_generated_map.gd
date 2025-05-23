@@ -11,7 +11,10 @@ func generate():
     var size_y := get_used_rect().size.y
     
     var rand_tile = Vector2i(randi_range(0, size_x - 1), randi_range(0, size_y - 1))
-    init_cell(rand_tile, stack, visited)
+    
+    visited[rand_tile] = true
+    set_cell(rand_tile, 0, Vector2i(0,0))
+    stack.push_front(rand_tile)
 
     while stack.size() != 0:
         var cell: Vector2i = stack.pop_front()
@@ -19,12 +22,12 @@ func generate():
         for n in neighbors:
             if visited.get(n, false) == false and get_cell_atlas_coords(n) == Vector2i(1,1):
                 print("Good tile at ", n)
+
+                visited[cell] = true
+                set_cell(cell, 0, Vector2i(0,0))
+                stack.push_front(cell)
+
                 break
             else: continue
 
-
-func init_cell(cell: Vector2i, stack: Array, visited: Dictionary):
-    visited[cell] = true
-    set_cell(cell, 0, Vector2i(0,0))
-    stack.push_front(cell)
     
