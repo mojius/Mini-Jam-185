@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq23jxlcaexlk"
-path="res://.godot/imported/cracked blue tile.png-ec9915653e91410e7475958184112003.ctex"
+uid="uid://bevmqwsjk1t3p"
+path="res://.godot/imported/environment-tiles.png-08bc47551e2569cc1aa18a78ac3839e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/cracked blue tile.png"
-dest_files=["res://.godot/imported/cracked blue tile.png-ec9915653e91410e7475958184112003.ctex"]
+source_file="res://sprites/environment-tiles.png"
+dest_files=["res://.godot/imported/environment-tiles.png-08bc47551e2569cc1aa18a78ac3839e9.ctex"]
 
 [params]
 
